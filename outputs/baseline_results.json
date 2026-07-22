@@ -1,0 +1,48 @@
+{
+  "accuracy": 0.890625,
+  "f1": 0.8909657320872274,
+  "confusion_matrix": [
+    [
+      142,
+      18
+    ],
+    [
+      17,
+      143
+    ]
+  ],
+  "top_deceptive_ngrams": [
+    "location",
+    "floor",
+    "great",
+    "small",
+    "rate",
+    "breakfast",
+    "large",
+    "michigan",
+    "coffee",
+    "river",
+    "priceline",
+    "helpful",
+    "reviews",
+    "good",
+    "walk"
+  ],
+  "top_truthful_ngrams": [
+    "chicago",
+    "hotel chicago",
+    "luxury",
+    "experience",
+    "food",
+    "chicago hotel",
+    "luxurious",
+    "definitely",
+    "staying",
+    "husband",
+    "hotel",
+    "vacation",
+    "amazing",
+    "millennium",
+    "finally"
+  ]
+}

@@ -1,0 +1,9 @@
+pandas>=2.0
+scikit-learn>=1.3
+numpy>=1.24
+
+# optional, for the Streamlit demo:
+streamlit>=1.30
+
+# optional, for --embeddings mode in 03_build_knowledge_base.py:
+# sentence-transformers>=2.5
