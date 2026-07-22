@@ -67,23 +67,6 @@ streamlit run scripts/app.py
 `04_rag_copilot.py --mode retrieve_only` works without Ollama installed —
 useful for testing the retrieval layer on its own.
 
-## Local vs. API: which to use
-
-| | Local (`04_rag_copilot.py`, Ollama) | API (`06_api_copilot.py`, Claude/GPT) |
-|---|---|---|
-| Cost | Free after the one-time model download | Per-token — a full eval run has a real dollar cost |
-| Data | Never leaves your machine | Sent to a third party over the network |
-| Setup | Install Ollama, pull a model (~2GB) | Just an API key |
-| Capability | Smaller model, more variance in JSON formatting / reasoning quality | Frontier-model reasoning, more reliable structured output |
-| Latency | Slower on CPU, no rate limits | Fast, but subject to provider rate limits |
-| Best framing | "I can run this fully offline for a data-sensitive domain" | "I can integrate with the same hosted APIs production systems use" |
-
-Both scripts share the exact same `build_prompt` / retrieval logic from
-`04_rag_copilot.py`, so a head-to-head comparison via `05_evaluate.py
---engine api` vs `--engine ollama` isolates the effect of model choice,
-not prompt differences. Worth having both in your back pocket for an
-interview — some teams are local/on-prem for compliance reasons, most
-default to a hosted API.
 
 ## Results (baseline, this repo)
 TF-IDF + Logistic Regression on the held-out test set (n=320):
@@ -114,18 +97,4 @@ data/deceptive-opinion.csv   the Ott et al. corpus
 outputs/                     generated: splits, metrics, index, results
 ```
 
-## Extending it
-- Swap TF-IDF retrieval for `sentence-transformers` embeddings:
-  `python scripts/03_build_knowledge_base.py --embeddings`
-  (`retrieval.py` already supports both backends transparently.)
-- Swap the review-fraud domain for anything else with labeled text pairs —
-  the retrieval + grounded-verdict pattern is domain-agnostic.
-- Add a second retrieval collection for real platform policy documents
-  once you have access to them.
 
-## Resume line (once you've run it and have your own RAG numbers)
-> Built a retrieval-augmented LLM system for fake-review detection,
-> combining a TF-IDF baseline (89% accuracy) with a local-LLM RAG copilot
-> that grounds verdicts in retrieved fraud-policy evidence and labeled
-> examples — improving [accuracy/interpretability] over zero-shot
-> prompting while running entirely on local, no-API-cost infrastructure.
